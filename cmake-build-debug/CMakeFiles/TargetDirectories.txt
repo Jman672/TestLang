@@ -1,0 +1,3 @@
+/home/jman672/dev/TestLang/cmake-build-debug/CMakeFiles/test.dir
+/home/jman672/dev/TestLang/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jman672/dev/TestLang/cmake-build-debug/CMakeFiles/rebuild_cache.dir
