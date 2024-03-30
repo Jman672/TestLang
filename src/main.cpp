@@ -8,7 +8,10 @@
 enum class TokenType {
     _return,
     int_lit,
-    semi
+    semi,
+    assign,
+    equal,
+    variable
 };
 
 struct Token{
@@ -28,13 +31,20 @@ std::vector<Token> tokenize(const std::string& str){
             }
             i--;
             if(buf == "return"){
-                tokens.push_back({.type = TokenType::_return});
+                tokens.push_back({.type = TokenType::_return, .value = "return"});
+                //std::cout<<"return token found\n";
+                buf.clear();
+                continue;
+            }else if(buf == "assign"){
+                tokens.push_back({.type = TokenType::assign, .value = "assign"});
                 //std::cout<<"return token found\n";
                 buf.clear();
                 continue;
             }else{
-                std::cerr<<"You messed up!";
-                exit(EXIT_FAILURE);
+                tokens.push_back({.type = TokenType::variable, .value = "var"});
+                //std::cout<<"return token found\n";
+                buf.clear();
+                continue;
             }
         }
         else if(std::isspace(c)){
@@ -52,7 +62,12 @@ std::vector<Token> tokenize(const std::string& str){
             continue;
         }
         else if(c == ';'){
-            tokens.push_back({.type = TokenType::semi});
+            tokens.push_back({.type = TokenType::semi, .value = "semi"});
+            //std::cout<<"semi token found\n";
+            continue;
+        }
+        else if(c == '='){
+            tokens.push_back({.type = TokenType::equal, .value = "equal"});
             //std::cout<<"semi token found\n";
             continue;
         }
@@ -75,6 +90,22 @@ std::string tokens_to_asm(const std::vector<Token>& tokens){
                     output << "    mov rax, 60\n";
                     output << "    mov rdi, " << tokens[i+1].value.value() << "\n";
                     output << "    syscall\n";
+                    i += 3;
+                }
+            }
+        }else if(token.type == TokenType::assign){
+            if(i+1 < tokens.size() && tokens[i+1].type == TokenType::variable){
+                if(i+2 < tokens.size() && tokens[i+2].type == TokenType::equal){
+                    if(i+3 < tokens.size() && tokens[i+3].type == TokenType::int_lit){
+                        if(i+4 < tokens.size() && tokens[i+4].type == TokenType::semi){
+                            output << "    mov rax, 60\n";
+                            output << "    mov rdi, [" << tokens[i+1].value.value() << "]\n";
+                            output << "    syscall\n";
+                            output << tokens[i+1].value.value()<<":\n";
+                            output << "    db " << tokens[i+3].value.value() <<"\n";
+                            i += 5;
+                        }
+                    }
                 }
             }
         }
@@ -98,8 +129,13 @@ int main(int argc, char** argv){
 
     std::string contents = contents_stream.str();//get a string from stream
 
+//  std::cout << contents << "\n";
+
     std::vector<Token> tokens = tokenize(contents);//tokenize the string
 
+//    for(auto i : tokens){
+//        std::cout<<i.value.value()<<"\t";
+//    }
     output << tokens_to_asm(tokens);//convert to asm
 
     output.close();//close output file

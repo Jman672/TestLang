@@ -1,7 +1,8 @@
 global _start
 _start:
     mov rax, 60
-    mov rdi, [var]
+    mov rdi, [_var]
     syscall
-var:
-    db 15
+
+_var:
+    db 0xFF

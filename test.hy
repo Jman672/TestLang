@@ -1,1 +1,2 @@
-return 69;
+assign x = 15;
+return x;
