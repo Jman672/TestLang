@@ -1,5 +1,5 @@
-CMakeFiles/test.dir/src/main.cpp.o: \
- /home/jman672/dev/TestLang/src/main.cpp /usr/include/stdc-predef.h \
+CMakeFiles/test.dir/src/generate.cpp.o: \
+ /home/jman672/dev/TestLang/src/generate.cpp /usr/include/stdc-predef.h \
  /home/jman672/dev/TestLang/src/includeFile.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \

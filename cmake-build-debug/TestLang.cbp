@@ -82,7 +82,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/jman672/dev/TestLang/src/generate.cpp">
+			<Option target="test"/>
+		</Unit>
+		<Unit filename="/home/jman672/dev/TestLang/src/generate.hpp">
+			<Option target="test"/>
+		</Unit>
+		<Unit filename="/home/jman672/dev/TestLang/src/includeFile.h">
+			<Option target="test"/>
+		</Unit>
 		<Unit filename="/home/jman672/dev/TestLang/src/main.cpp">
+			<Option target="test"/>
+		</Unit>
+		<Unit filename="/home/jman672/dev/TestLang/src/parser.hpp">
+			<Option target="test"/>
+		</Unit>
+		<Unit filename="/home/jman672/dev/TestLang/src/tokenization.hpp">
 			<Option target="test"/>
 		</Unit>
 		<Unit filename="/home/jman672/dev/TestLang/CMakeLists.txt">

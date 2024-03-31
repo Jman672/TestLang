@@ -1,24 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <optional>
-#include <vector>
-
-enum class TokenType {
-    _return,
-    int_lit,
-    semi,
-    assign,
-    equal,
-    variable
-};
-
-struct Token{
-    TokenType type;
-    std::optional<std::string> value;
-};
-
+#include "includeFile.h"
+/*
 std::vector<Token> tokenize(const std::string& str){
     std::vector<Token> tokens;
     std::string buf;
@@ -72,7 +53,7 @@ std::vector<Token> tokenize(const std::string& str){
             continue;
         }
         else{
-            std::cerr<<"Soemthing Went Wrong";
+            std::cerr<<"Something Went Wrong";
             exit(EXIT_FAILURE);
         }
     }
@@ -110,9 +91,12 @@ std::string tokens_to_asm(const std::vector<Token>& tokens){
             }
         }
     }
+    output << "    mov rax, 60\n";
+    output << "    mov rdi, 0\n";
+    output << "    syscall\n";
     return output.str();
 }
-
+*/
 int main(int argc, char** argv){
     if(argc != 2){
         std::cerr << "Incorrect Usage. Correct usage is...\n";
@@ -129,14 +113,25 @@ int main(int argc, char** argv){
 
     std::string contents = contents_stream.str();//get a string from stream
 
-//  std::cout << contents << "\n";
-
-    std::vector<Token> tokens = tokenize(contents);//tokenize the string
+    Tokenizer tokenizer(std::move(contents));//Instantiate tokenizer class
+    std::vector<Token> tokens = tokenizer.tokenize();//tokenize the string
 
 //    for(auto i : tokens){
 //        std::cout<<i.value.value()<<"\t";
 //    }
-    output << tokens_to_asm(tokens);//convert to asm
+
+    Parser parser(tokens); //Instantiate Parser
+    std::optional<nodeRet> tree = parser.parse(); //Parse the tokens
+
+    if(!tree.has_value()){ //if the parser failed, exit with failure
+        std::cerr << "No return statement found";
+        exit(EXIT_FAILURE);
+    }
+
+    Generator gen(tree.value());//Instantiate asm generator
+    output << gen.generate();//Put the asm into the output file
+
+    //std::cout << tokens_to_asm(tokens);
 
     output.close();//close output file
 

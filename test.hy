@@ -1,2 +1,1 @@
-assign x = 15;
-return x;
+return 19;
