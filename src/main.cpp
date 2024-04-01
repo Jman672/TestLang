@@ -121,14 +121,14 @@ int main(int argc, char** argv){
 //    }
 
     Parser parser(tokens); //Instantiate Parser
-    std::optional<nodeRet> tree = parser.parse(); //Parse the tokens
+    std::optional<nodeProgram> program = parser.parseProgram(); //Parse the tokens
 
-    if(!tree.has_value()){ //if the parser failed, exit with failure
+    if(!program.has_value()){ //if the parser failed, exit with failure
         std::cerr << "No return statement found";
         exit(EXIT_FAILURE);
     }
 
-    Generator gen(tree.value());//Instantiate asm generator
+    Generator gen(program.value());//Instantiate asm generator
     output << gen.generate();//Put the asm into the output file
 
     //std::cout << tokens_to_asm(tokens);

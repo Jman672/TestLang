@@ -13,7 +13,9 @@ enum class TokenType {
     semi,
     assign,
     equal,
-    variable
+    variable,
+    open_parenthesis,
+    close_parenthesis
 };
 
 struct Token{
@@ -65,8 +67,16 @@ public:
                 //std::cout<<"equals,";
                 tokens.emplace_back(TokenType::equal);
                 consume();
+            }else if(peek().value() == '('){
+                //std::cout<<"open_parenthesis,";
+                tokens.emplace_back(TokenType::open_parenthesis);
+                consume();
+            }else if(peek().value() == ')'){
+                //std::cout<<"close_parenthesis,";
+                tokens.emplace_back(TokenType::close_parenthesis);
+                consume();
             }else{
-                std::cerr << "invalid character: " << peek().value();
+                std::cerr << "invalid character: " << peek().value()<<"\n";
                 exit(EXIT_FAILURE);
             }
         }
@@ -76,9 +86,9 @@ public:
         return tokens;
     }
 private:
-    [[nodiscard]] inline std::optional<char> peek(int ahead = 1) const{
-        if(index + ahead <= source.length()){
-            return source[index];
+    [[nodiscard]] inline std::optional<char> peek(int ahead = 0) const{
+        if(index + ahead < source.length()){
+            return source[index + ahead];
         }
         return {};
     }

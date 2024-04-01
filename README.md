@@ -3,16 +3,21 @@
 ### Grammar:
 $$
 \begin{align}
-[\text{return}] &\to \text{return } [\text{expr}];
-\\
-[\text{expr}] &\to 
-\begin{cases}
-    \text{int\_lit}
-    \\
+[\text{program}] &\to [\text{statement}]^*\\
+
+[\text{statement}] &\to \begin{cases}
+    return \text{  [expr];}\\
+    assign \text{  [variable] = [expr];}\\
+\end{cases}\\
+
+[\text{expr}] &\to \begin{cases}
+    \text{int\_lit}\\
     \text{[variable]}
+\end{cases}\\
+
+[\text{variable}] &\to \begin{cases}
+    \text{int\_lit}\\
 \end{cases}
-\\
-[\text{variable}] &\to \text{assign (var\_name) = int\_lit}
-\\
-\end{align}
+
+\end{align}\\
 $$

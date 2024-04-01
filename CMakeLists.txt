@@ -4,7 +4,7 @@ project(TestLang)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(test src/main.cpp src/generate.cpp
+add_executable(test src/main.cpp
         src/includeFile.h
         src/tokenization.hpp
         src/parser.hpp

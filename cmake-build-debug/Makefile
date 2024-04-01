@@ -129,30 +129,6 @@ test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 .PHONY : test/fast
 
-src/generate.o: src/generate.cpp.o
-.PHONY : src/generate.o
-
-# target to build an object file
-src/generate.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/generate.cpp.o
-.PHONY : src/generate.cpp.o
-
-src/generate.i: src/generate.cpp.i
-.PHONY : src/generate.i
-
-# target to preprocess a source file
-src/generate.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/generate.cpp.i
-.PHONY : src/generate.cpp.i
-
-src/generate.s: src/generate.cpp.s
-.PHONY : src/generate.s
-
-# target to generate assembly for a file
-src/generate.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/generate.cpp.s
-.PHONY : src/generate.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -186,9 +162,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... src/generate.o"
-	@echo "... src/generate.i"
-	@echo "... src/generate.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

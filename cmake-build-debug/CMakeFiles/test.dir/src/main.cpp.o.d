@@ -169,5 +169,14 @@ CMakeFiles/test.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
  /home/jman672/dev/TestLang/src/tokenization.hpp \
- /home/jman672/dev/TestLang/src/parser.hpp \
- /home/jman672/dev/TestLang/src/generate.hpp
+ /home/jman672/dev/TestLang/src/parser.hpp /usr/include/c++/11/variant \
+ /usr/include/c++/11/bits/invoke.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/parse_numbers.h \
+ /home/jman672/dev/TestLang/src/generate.hpp \
+ /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
+ /usr/include/c++/11/bits/hashtable_policy.h /usr/include/c++/11/tuple \
+ /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
+ /usr/include/c++/11/bits/node_handle.h \
+ /usr/include/c++/11/bits/unordered_map.h \
+ /usr/include/c++/11/bits/erase_if.h
